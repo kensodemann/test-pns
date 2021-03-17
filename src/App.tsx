@@ -31,11 +31,14 @@ const App: React.FC = () => {
   const pushIsAvailable = Capacitor.isPluginAvailable('PushNotifications');
 
   if (pushIsAvailable) {
+    console.log('add the listeners');
     PushNotifications.addListener('registration', async (token: Token) => {
+      alert('got token');
       console.log('Got token', token);
     });
     PushNotifications.addListener('registrationError', err => {
-      console.error(err);
+      alert('registration error');
+      console.log('got an error registering', err);
     });
     PushNotifications.addListener('pushNotificationActionPerformed', (notification: ActionPerformed) => {
       // TODO Replace this once routing is in place and we know the structure of URLs we want to create for deep linking
@@ -49,7 +52,6 @@ const App: React.FC = () => {
       if (res.receive === 'granted') {
         await PushNotifications.register();
       }
-      alert(res.receive);
     };
 
     if (pushIsAvailable && doCheck) {

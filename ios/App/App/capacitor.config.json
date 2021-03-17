@@ -1,5 +1,5 @@
 {
-	"appId": "io.ionic.starter",
+	"appId": "com.capacitorjs.app.testapp",
 	"appName": "test-pns",
 	"bundledWebRuntime": false,
 	"npmClient": "npm",
