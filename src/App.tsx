@@ -1,7 +1,7 @@
 import { Redirect, Route } from 'react-router-dom';
 import { IonApp, IonRouterOutlet } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
-import{PushNotifications} from '@capacitor/push-notifications';
+import { PushNotifications } from '@capacitor/push-notifications';
 import Home from './pages/Home';
 
 /* Core CSS required for Ionic components to work properly */
@@ -22,22 +22,25 @@ import '@ionic/react/css/display.css';
 
 /* Theme variables */
 import './theme/variables.css';
-import {useEffect} from 'react';
+import { useEffect } from 'react';
+import {Capacitor} from '@capacitor/core';
 
 const App: React.FC = () => {
   let doCheck = true;
+
+  const pushIsAvailable = Capacitor.isPluginAvailable('PushNotifications');
 
   useEffect(() => {
     const check = async () => {
       const res = await PushNotifications.requestPermissions();
       alert(res.receive);
-    }
+    };
 
-    if (doCheck) {
+    if (pushIsAvailable && doCheck) {
       doCheck = false;
       check();
     }
-  }, []);
+  }, [pushIsAvailable]);
 
   return (
     <IonApp>
