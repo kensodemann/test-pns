@@ -1,0 +1,7 @@
+{
+  "name": "test-pns",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}
