@@ -1,6 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { IonHeader, IonToolbar, IonTitle, IonContent } from '@ionic/angular/standalone';
-import { ActionPerformed, PushNotifications, PushNotificationSchema, Token } from '@capacitor/push-notifications';
+import { Component } from '@angular/core';
+import { IonContent, IonHeader, IonTitle, IonToolbar } from '@ionic/angular/standalone';
 
 @Component({
   selector: 'app-home',
@@ -8,30 +7,6 @@ import { ActionPerformed, PushNotifications, PushNotificationSchema, Token } fro
   styleUrls: ['home.page.scss'],
   imports: [IonHeader, IonToolbar, IonTitle, IonContent],
 })
-export class HomePage implements OnInit {
+export class HomePage {
   constructor() {}
-
-  ngOnInit() {
-    PushNotifications.requestPermissions().then((result) => {
-      if (result.receive === 'granted') {
-        PushNotifications.register();
-      }
-    });
-
-    PushNotifications.addListener('registration', (token: Token) => {
-      alert('Push registration success, token: ' + token.value);
-    });
-
-    PushNotifications.addListener('registrationError', (error: any) => {
-      alert('Error on registration: ' + JSON.stringify(error));
-    });
-
-    PushNotifications.addListener('pushNotificationReceived', (notification: PushNotificationSchema) => {
-      alert('Push received: ' + JSON.stringify(notification));
-    });
-
-    PushNotifications.addListener('pushNotificationActionPerformed', (notification: ActionPerformed) => {
-      alert('Push action performed: ' + JSON.stringify(notification));
-    });
-  }
 }
