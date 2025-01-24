@@ -1,9 +1,9 @@
 import type { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
-  appId: 'io.ionic.testpush',
+  appId: 'io.ionic.testpushkws',
   appName: 'test-pns',
-  webDir: 'www/browser',
+  webDir: 'www',
 };
 
 export default config;
